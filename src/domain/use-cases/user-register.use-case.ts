@@ -3,20 +3,21 @@ import { UseCase } from '../base/use-case';
 import { UserModel } from '../models/user.model';
 import { UserRepository } from '../repositories/user.repository';
 
-export class UserLoginUseCase
-  implements UseCase<{ userName: string; password: string }, UserModel>
+export class UserRegisterUseCase
+  implements UseCase<{ phoneNumber: string; password: string }, UserModel>
 {
   constructor(private userRepository: UserRepository) {}
 
   execute(params: {
-    userName: string;
+    phoneNumber: string;
     password: string;
   }): Observable<UserModel> {
     try {
-      return this.userRepository.login(params);
+      return this.userRepository.register(params);
     } catch (error) {
-      console.log(error);
-      throw new Error('Error al iniciar sesión.');
+      throw new Error(
+        'Method not implemented. [UserRegisterUseCase]: Error al registrarse.'
+      );
     }
   }
 }
